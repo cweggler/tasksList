@@ -18,19 +18,15 @@ class TaskTableViewController: UITableViewController {
         let inputAlert = UIAlertController(title: "Enter Task", message: "Describe what you need to do", preferredStyle: .alert)
         inputAlert.addTextField(configurationHandler: nil)
         inputAlert.addAction(UIAlertAction(title: "Add", style: .default, handler: {(action: UIAlertAction) in
-            //if self.description == "" {
-                /*inputAlert.dismiss(animated: true, completion: (()-> Void)?)
-            }
-            else*/
-//            if self.description == "" {
-//                self.dismiss(animated: true, completion: nil)
-//            } -- this does not work
             
-            if let description = inputAlert.textFields?[0].text {
-                let task = Task(thingToDo: description)
-                let index = self.taskModel.add(task)
-                let indexPath = IndexPath(row: index, section: 0)
-                self.tableView.insertRows(at: [indexPath], with: .automatic)
+            if let description = inputAlert.textFields?[0].text, !description.isEmpty {
+                    let task = Task(thingToDo: description)
+                    let index = self.taskModel.add(task)
+                    let indexPath = IndexPath(row: index, section: 0)
+                    self.tableView.insertRows(at: [indexPath], with: .automatic)
+            }
+            else {
+                self.dismiss(animated: true, completion: nil)
             }
         }
         ))
