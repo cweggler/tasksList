@@ -22,8 +22,15 @@
                             <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6vL-jz-shB">
+                                    <rect key="frame" x="8" y="7" width="175.5" height="30"/>
+                                    <state key="normal" title="Edit Task"/>
+                                    <connections>
+                                        <action selector="toggleEditingMode:" destination="KlK-n8-Mag" eventType="touchUpInside" id="42V-ug-KWw"/>
+                                    </connections>
+                                </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TMj-S1-uac">
-                                    <rect key="frame" x="156" y="7" width="63" height="30"/>
+                                    <rect key="frame" x="191.5" y="7" width="175.5" height="30"/>
                                     <state key="normal" title="Add Task"/>
                                     <connections>
                                         <action selector="addNewTask:" destination="KlK-n8-Mag" eventType="touchUpInside" id="TFH-YT-2va"/>
@@ -32,8 +39,12 @@
                             </subviews>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
-                                <constraint firstItem="TMj-S1-uac" firstAttribute="centerX" secondItem="k6p-H4-16w" secondAttribute="centerX" id="9I5-oM-2tf"/>
-                                <constraint firstItem="TMj-S1-uac" firstAttribute="top" secondItem="k6p-H4-16w" secondAttribute="top" constant="7" id="NTw-B2-07p"/>
+                                <constraint firstAttribute="trailing" secondItem="TMj-S1-uac" secondAttribute="trailing" constant="8" id="DYr-N8-ZMf"/>
+                                <constraint firstItem="TMj-S1-uac" firstAttribute="width" secondItem="6vL-jz-shB" secondAttribute="width" id="MgB-1u-0Pu"/>
+                                <constraint firstItem="6vL-jz-shB" firstAttribute="leading" secondItem="k6p-H4-16w" secondAttribute="leading" constant="8" id="ayO-Yg-uvX"/>
+                                <constraint firstItem="TMj-S1-uac" firstAttribute="centerY" secondItem="k6p-H4-16w" secondAttribute="centerY" id="qHw-Fx-ldJ"/>
+                                <constraint firstItem="6vL-jz-shB" firstAttribute="centerY" secondItem="k6p-H4-16w" secondAttribute="centerY" id="qXa-xM-3W6"/>
+                                <constraint firstItem="TMj-S1-uac" firstAttribute="leading" secondItem="6vL-jz-shB" secondAttribute="trailing" constant="8" id="zVM-xl-fPT"/>
                             </constraints>
                         </view>
                         <prototypes>

@@ -6,14 +6,16 @@
 //  Copyright © 2019 Cara. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
-class Task {
-    var description: String
+class Task: NSObject {
+    var thingToDo: String
     var dateCreated: Date
     
-    init(description: String, dateCreated: Date = Date()){
-        self.description = description
+    init(thingToDo: String, dateCreated: Date = Date()){
+        self.thingToDo = thingToDo
         self.dateCreated = dateCreated
+    
+        super.init()
     }
 }

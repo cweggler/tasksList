@@ -6,7 +6,7 @@
 //  Copyright © 2019 Cara. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 class TaskList {
     var tasks = [Task]()
@@ -22,6 +22,12 @@ class TaskList {
         }
         
         return nil
+    }
+    
+    func removeTask(_ task: Task) {
+        if let index = tasks.index(of: task){
+           tasks.remove(at: index)
+      }
     }
     
     func count() -> Int {

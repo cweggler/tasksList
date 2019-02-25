@@ -21,8 +21,13 @@ class TaskTableViewController: UITableViewController {
             //if self.description == "" {
                 /*inputAlert.dismiss(animated: true, completion: (()-> Void)?)
             }
-            else*/ if let description = inputAlert.textFields?[0].text {
-                let task = Task(description: description)
+            else*/
+//            if self.description == "" {
+//                self.dismiss(animated: true, completion: nil)
+//            } -- this does not work
+            
+            if let description = inputAlert.textFields?[0].text {
+                let task = Task(thingToDo: description)
                 let index = self.taskModel.add(task)
                 let indexPath = IndexPath(row: index, section: 0)
                 self.tableView.insertRows(at: [indexPath], with: .automatic)
@@ -33,6 +38,24 @@ class TaskTableViewController: UITableViewController {
         present(inputAlert, animated: true)
     }
     
+    @IBAction func toggleEditingMode(_ sender: UIButton){
+        // If you are currently in editing mode...
+        if isEditing {
+            // Change text of button to inform user of its state
+            sender.setTitle("Edit Task", for: .normal)
+            
+            // Turn off editing mode
+            setEditing(false, animated: true)
+        } else {
+            // Change text of button to inform user of its state
+            sender.setTitle("Done", for: .normal)
+            
+            // Enter editing mode
+            setEditing(true, animated: true)
+        }
+        
+    }
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return taskModel.count()
     }
@@ -40,10 +63,23 @@ class TaskTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let task = taskModel.getTask(at: indexPath.row)
         let cell = tableView.dequeueReusableCell(withIdentifier: "UITableViewCell", for: indexPath)
-        cell.textLabel?.text = task?.description
+        cell.textLabel?.text = task?.thingToDo
         let dateString = Formatting.dateFormatter.string(from: (task?.dateCreated)!)
         cell.detailTextLabel?.text = "Created at \(dateString)"
         return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        // If the table view is asking to do a delete command...
+        if editingStyle == .delete {
+            let task = taskModel.tasks[indexPath.row]
+            // Remove the item from the tasklist
+            taskModel.removeTask(task)
+            
+            //Also remove that row from the table view with an animation
+            tableView.deleteRows(at: [indexPath], with: .automatic)
+        }
+        
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
